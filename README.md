@@ -7,4 +7,5 @@
 - Personal `typedef`s/`#defines`
 
 ## License
-Check LICENSE
+This software is public domain.
+See UNLICENSE for more details.
