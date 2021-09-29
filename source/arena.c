@@ -14,7 +14,7 @@ CAT_Arena *CAT_ArenaInit(CATu64 size)
 void *CAT_ArenaAlloc(CAT_Arena *arena, CATu64 size)
 {
     // Align memory to sizeof(void *)
-    CATu64 alginment = sizeof(void *);
+    CATu64 alignment = sizeof(void *);
     CATu64 result_offset = arena->end;
     result_offset += alignment - 1;
     result_offset -= result_offset % alignment;
