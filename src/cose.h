@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "coro.h"
+#include "linked_list.h"
 #include "math.h"
 #include "arena.h"
 #include "string.h"
