@@ -1,11 +1,11 @@
-#ifndef CATLIB_H
-#define CATLIB_H
+#ifndef COSE_H
+#define COSE_H
 
 #include "types.h"
+#include "coro.h"
 #include "math.h"
 #include "arena.h"
-// TODO: write this
-//#include "string.h"
+#include "string.h"
 
 #include "math.c"
 #include "arena.c"
