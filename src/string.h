@@ -14,5 +14,6 @@ struct CE_String {
 };
 
 CE_String CE_StrC(CE_Arena *arena, const char *str);
+int CE_StrCmp(CE_String a, CE_String b);
 
 #endif

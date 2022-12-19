@@ -1,13 +1,13 @@
 #include "arena.h"
+#include "memory.h"
 
 CE_Arena *CE_ArenaAlloc(void)
 {
     CE_Arena *result = 0;
 
-    void *memory = mmap(0, CE_ARENA_MAX, PROT_NONE,
-            MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-    if (memory != (void *) -1) {
-        mprotect(memory, CE_ARENA_INITIAL, PROT_READ | PROT_WRITE);
+    void *memory = CE_MemReserve(CE_ARENA_MAX);
+    if (memory != NULL) {
+        CE_MemCommit(memory, CE_ARENA_INITIAL);
         result = (CE_Arena *) memory;
         result->base = memory + 64;
         result->off = 0;
@@ -23,7 +23,7 @@ void CE_ArenaFree(CE_Arena *arena)
         return;
     }
     arena->off = arena->cap = 0;
-    munmap(arena->base, CE_ARENA_MAX);
+    CE_MemRelease(arena->base, CE_ARENA_MAX);
     arena->base = 0;
 }
 
@@ -41,7 +41,7 @@ void *CE_ArenaPush(CE_Arena *arena, size_t size)
     } else {
         void *memory = (void *) arena->base - 64;
         arena->cap <<= 1;
-        mprotect(memory, arena->cap, PROT_READ | PROT_WRITE);
+        CE_MemCommit(memory, arena->cap);
         return CE_ArenaPush(arena, size);
     }
 

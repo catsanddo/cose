@@ -3,9 +3,8 @@
 
 #include <stdint.h>
 #include <stddef.h>
-#include <sys/mman.h>
 
-#define CE_ARENA_MAX (16l << 20)
+#define CE_ARENA_MAX (32l << 20)
 #define CE_ARENA_INITIAL ( 4l << 10)
 
 #define CE_ArenaClear(a) ArenaPop(a, (a)->off)

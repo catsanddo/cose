@@ -15,3 +15,17 @@ CE_String CE_StrC(CE_Arena *arena, const char *str)
 
     return result;
 }
+
+int CE_StrCmp(CE_String a, CE_String b)
+{
+    if (a.length != b.length) {
+        return a.length - b.length;
+    }
+    for (size_t i = 0; i < a.length; ++i) {
+        if (a.str[i] != b.str[i]) {
+            return a.str[i] - b.str[i];
+        }
+    }
+
+    return 0;
+}
