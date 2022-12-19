@@ -12,7 +12,6 @@ My own personal stdlib for C inspired by [HandMade principles](https://handmade.
 - Simple vector math (COMING SOON)
 
 ## Notes
-- Linux support only but windows will be coming (and is easy to add yourself if you can't wait)
 - Currently not modular but may be one day
 
 ## Using
