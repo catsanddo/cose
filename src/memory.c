@@ -35,7 +35,7 @@ int CE_MemDecommit(void *addr, size_t length)
 
 void *CE_MemReserve(size_t length)
 {
-	return VirtualAlloc(NULL, length, MEM_RESERVE, PAGE_NOACCESS);
+	return VirtualAlloc(NULL, length, MEM_RESERVE, PAGE_READWRITE);
 }
 
 int CE_MemRelease(void *addr, size_t length)
