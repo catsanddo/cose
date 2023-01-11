@@ -15,6 +15,11 @@ typedef uint16_t CE_u16;
 typedef uint32_t CE_u32;
 typedef uint64_t CE_u64;
 
+// Boolean types
+typedef CE_u8 CE_b8;
+typedef CE_u16 CE_b16;
+typedef CE_u32 CE_b32;
+
 // Floating point numbers
 typedef float  CE_f32;
 typedef double CE_f64;
