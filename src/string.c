@@ -87,6 +87,21 @@ CE_u64 CE_StrFind(CE_String8 source, CE_String8 sub_string)
     return source.length;
 }
 
+CE_String8 CE_StrSub(CE_String8 source, CE_u64 a, CE_u64 b)
+{
+    if (a > b || a >= source.length) {
+        return (CE_String8) {0};
+    }
+
+    b = CE_Min(source.length, b);
+
+    CE_String8 result;
+    result.str = &source.str[a];
+    result.length = b - a;
+
+    return result;
+}
+
 CE_String16 CE_Str8ToStr16(CE_Arena *arena, CE_String8 source)
 {
 }
