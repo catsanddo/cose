@@ -4,7 +4,7 @@
 #include <stddef.h>
 #include "arena.h"
 
-#define CE_StrVArg(s) s.length, s.str
+#define CE_StrVArg(s) (int) s.length, s.str
 #define CE_StrLit(s) (CE_String8) { (CE_u8 *) (s), sizeof(s)-1 }
 #define CE_StrIsNull(s) ((s).str == NULL)
 
@@ -39,7 +39,7 @@ struct CE_String8List {
     CE_u64 length;
 };
 
-CE_String8 CE_CloneCString(CE_Arena *arena, const char *str);
+CE_String8 CE_StrC(CE_Arena *arena, const char *str);
 CE_b32 CE_StrEq(CE_String8 a, CE_String8 b);
 CE_String8 CE_StrClone(CE_Arena *arena, CE_String8 src);
 CE_String8 CE_StrCat(CE_Arena *arena, CE_String8 lhs, CE_String8 rhs);

@@ -12,6 +12,7 @@ CE_Arena *CE_ArenaAlloc(void)
         result->base = memory;
         result->offset = CE_ARENA_SIZE;
         result->cap = CE_ARENA_INITIAL;
+        result->align = 8;
     }
 
     return result;
@@ -24,14 +25,13 @@ void CE_ArenaFree(CE_Arena *arena)
     }
     arena->offset = arena->cap = 0;
     CE_MemRelease(arena->base, CE_ARENA_MAX);
-    arena->base = 0;
 }
 
 void *CE_ArenaPush(CE_Arena *arena, CE_u64 size)
 {
     unsigned char *result = 0;
 
-    size = CE_AlignPow2(size, 8);
+    size = CE_AlignPow2(size, arena->align);
 
     if (arena->offset + size <= arena->cap) {
         result = arena->base + arena->offset;
@@ -39,9 +39,8 @@ void *CE_ArenaPush(CE_Arena *arena, CE_u64 size)
     } else if (arena->offset + size > CE_ARENA_MAX) {
         return 0;
     } else {
-        void *memory = (void *) arena->base - CE_ARENA_SIZE;
         arena->cap <<= 1;
-        CE_MemCommit(memory, arena->cap);
+        CE_MemCommit(arena->base, arena->cap);
         return CE_ArenaPush(arena, size);
     }
 
@@ -50,7 +49,7 @@ void *CE_ArenaPush(CE_Arena *arena, CE_u64 size)
 
 void CE_ArenaPop(CE_Arena *arena, CE_u64 size)
 {
-    size = CE_AlignPow2(size, 8);
+    size = CE_AlignPow2(size, arena->align);
     arena->offset = CE_Max(arena->offset - size, CE_ARENA_SIZE);
 }
 
