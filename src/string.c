@@ -22,6 +22,12 @@ CE_b32 CE_StrEq(CE_String8 a, CE_String8 b)
     if (a.length != b.length) {
         return 0;
     }
+    if (CE_StrIsNull(a) || CE_StrIsNull(b)) {
+        if (a.str == b.str) {
+            return 1;
+        }
+        return 0;
+    }
     for (CE_u64 i = 0; i < a.length; ++i) {
         if (a.str[i] != b.str[i]) {
             return 0;
@@ -70,6 +76,29 @@ CE_String8List CE_StrSplit(CE_Arena *arena, CE_String8 source, CE_String8 separa
 {
     CE_String8List result = {0};
 
+    CE_String8 window = { source.str, separator.length };
+    CE_String8 phrase = { source.str, 0 };
+
+    while (CE_StrEndPtr(window) <= CE_StrEndPtr(source)) {
+        if (CE_StrEq(window, separator)) {
+            CE_String8Node *node = CE_ArenaPush(arena, sizeof(CE_String8Node));
+            node->string = phrase;
+            CE_DLLPushEnd(result.first, result.last, node);
+            result.length += 1;
+
+            window.str += separator.length;
+            phrase.str = window.str;
+            phrase.length = 0;
+        }
+        window.str += 1;
+        phrase.length += 1;
+    }
+
+    phrase.length += window.length - 1;
+    CE_String8Node *node = CE_ArenaPush(arena, sizeof(CE_String8Node));
+    node->string = phrase;
+    CE_DLLPushEnd(result.first, result.last, node);
+
     return result;
 }
 
@@ -102,6 +131,7 @@ CE_String8 CE_StrSub(CE_String8 source, CE_u64 a, CE_u64 b)
     return result;
 }
 
+#if 0
 CE_String16 CE_Str8ToStr16(CE_Arena *arena, CE_String8 source)
 {
 }
@@ -179,3 +209,4 @@ CE_String32 CE_Str8ToStr32(CE_Arena *arena, CE_String8 source)
 CE_String8 CE_Str32ToStr8(CE_Arena *arena, CE_String32 source)
 {
 }
+#endif

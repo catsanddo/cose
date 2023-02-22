@@ -7,6 +7,7 @@
 #define CE_StrVArg(s) (int) s.length, s.str
 #define CE_StrLit(s) (CE_String8) { (CE_u8 *) (s), sizeof(s)-1 }
 #define CE_StrIsNull(s) ((s).str == NULL)
+#define CE_StrEndPtr(s) ((s).str + (s).length - 1)
 
 typedef struct CE_String8 CE_String8;
 struct CE_String8 {
