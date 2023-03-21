@@ -22,6 +22,8 @@
 
 #define CE_DLLPopStart_NP(f,l,n,next,prev) ((f)==0? \
         ((n)=0): \
+        (f)==(l)? \
+        ((n)=(f), (f)=(l)=0): \
         ((n)=(f), (f)=(f)->next, (f)->prev = 0))
 #define CE_DLLPopStart(f,l,n) CE_DLLPopStart_NP(f,l,n,next,prev)
 #define CE_DLLPopEnd_NP(f,l,n,next,prev) CE_DLLPopStart_NP(l,f,n,prev,next)
