@@ -1,5 +1,5 @@
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef CE_MEMORY_H
+#define CE_MEMORY_H
 
 void *CE_MemReserve(CE_u64 length);
 int CE_MemRelease(void *addr, CE_u64 length);

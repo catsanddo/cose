@@ -1,5 +1,5 @@
-#ifndef ARENA_H
-#define ARENA_H
+#ifndef CE_ARENA_H
+#define CE_ARENA_H
 
 #include <stdint.h>
 #include <stddef.h>

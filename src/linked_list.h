@@ -1,5 +1,5 @@
-#ifndef LINKED_LIST_H
-#define LINKED_LIST_H
+#ifndef CE_LINKED_LIST_H
+#define CE_LINKED_LIST_H
 
 #define CE_Each(T,c,f) T *(c) = (f); (c) != 0; (c)=(c)->next
 #define CE_Each_N(T,c,f,next) T *(c) = (f); (c) != 0; (c)=(c)->next

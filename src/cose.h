@@ -1,5 +1,5 @@
-#ifndef COSE_H
-#define COSE_H
+#ifndef CE_COSE_H
+#define CE_COSE_H
 
 #include "types.h"
 #include "coro.h"

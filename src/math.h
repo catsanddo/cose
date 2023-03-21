@@ -1,5 +1,5 @@
-#ifndef MATH_H
-#define MATH_H
+#ifndef CE_MATH_H
+#define CE_MATH_H
 
 #define CE_AlignPow2(n,a) (((n)+((a-1)))&(~(a-1)))
 #define CE_Max(a, b) ((a) > (b) ? (a) : (b))

@@ -1,5 +1,5 @@
-#ifndef STRING_H
-#define STRING_H
+#ifndef CE_STRING_H
+#define CE_STRING_H
 
 #include <stddef.h>
 #include "arena.h"
