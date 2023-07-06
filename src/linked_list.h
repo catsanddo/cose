@@ -1,8 +1,8 @@
 #ifndef CE_LINKED_LIST_H
 #define CE_LINKED_LIST_H
 
-#define CE_Each(T,c,f) T *(c) = (f); (c) != 0; (c)=(c)->next
-#define CE_Each_N(T,c,f,next) T *(c) = (f); (c) != 0; (c)=(c)->next
+#define CE_ForEach(T,c,f) CE_ForEach_N(T,c,f,next)
+#define CE_ForEach_N(T,c,f,next) for (T *(c) = (f); (c) != 0; (c)=(c)->next)
 
 #define CE_SLLPush_N(f,n,next) ((f)==0? \
         ((f)=(n), (n)->next = 0): \
