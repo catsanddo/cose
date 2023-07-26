@@ -3,9 +3,9 @@
 mkdir -p bin/include
 mkdir -p bin/lib
 
-cp src/cose.h src/cose.c
-gcc -Wall -Wextra -c src/cose.c -O2 -o bin/cose.o
-rm src/cose.c
+cp cose.h cose.c
+gcc -Wall -Wextra -c cose.c -O2 -o bin/cose.o
+rm cose.c
 ar -crs bin/lib/libcose.a bin/*.o
 cp src/*.h bin/include
-sed '/".*\.c"/d' src/cose.h > bin/include/cose.h
+sed '/".*\.c"/d' cose.h > bin/include/cose.h
